@@ -1,21 +1,21 @@
----
-layout: compress
----
-
-<!DOCTYPE html>
-<html lang="pt-br">
-  	{% include head.html %}
-    <body>
-    	{% include svg-icons.html %}
-		<header class="page-header">
-			<h1 class="post-title">{{ page.title }}</h1>
-			{% include menu-search.html %}
-		</header>
-        <main>
-		    {{ content }}
-		</main>
-        {% include footer.html %}
-        {% include scripts.html %}
-		
-    </body>
+<html>
+  <head>
+    <meta content='{{ page.title }} - {{ site.title }}' name='title' />
+    <meta content='{{ page.title }} - {{ site.title }}' name='og:title' />
+    <title>{{ page.title }} - {{ site.title }}</title>
+    {% include head.html %}
+  </head>
+  <body>
+    {% include header.html %}
+    <div id='container'>
+      {% include links.html %}
+      <div class="content">
+          <section class='post'>
+            <h1>{{ page.title }}</h1>
+            {{ content }}
+          </section>
+        </div>
+    </div>
+    {% include footer.html %}
+  </body>
 </html>
