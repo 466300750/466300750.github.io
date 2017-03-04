@@ -1,47 +1,73 @@
-# Webjeda Gatok Theme
+# Space Jekyll
 
-[**Demo**](http://webjeda.com/gatok)
+A simple and elegant Jekyll theme based on Spacemacs. The theme works well on mobile devices as well.
 
-# Installation: 
-Fork the ``master`` branch and delete ``gh-pages`` branch in it. This is important because ``gh-pages`` branch is used here only to host the blog. You should be using the master branch as the source and create a fresh ``gh-pages`` branch.
+See a live demo [here](https://victorvoid.github.io/space-jekyll-template/).
 
-Watch my video on instlallation
-<iframe width="100%" height="360" src="https://www.youtube.com/embed/T2nx6tj-ZH4?rel=0" frameborder="0" allowfullscreen></iframe>
+![](https://github.com/victorvoid/space-jekyll-template/blob/master/screenshot.png?raw=true)
 
-## How to delete old **gh-pages** branch?
-After forking the repository, click on **branches**.
+# Site/User Settings
 
-![delete gh-pages branch](http://blog.webjeda.com/images/delete-github-branch.png)
+customize your site in ``_config.yml``
 
-Delete ``gh-pages`` branch.
-![delete gh-pages branch](http://blog.webjeda.com/images/delete-github-branch-2.png)
+```ruby
 
-You have to create a new ``gh-pages`` branch using the master branch. Go back to the forked repository and create ``gh-pages`` branch.
+# Site settings
+description: A blog about lorem ipsum
+baseurl: "" # the subpath
+url: "" # the base hostname &/|| protocol for your site 
 
-![create gh-pages branch](http://blog.webjeda.com/images/create-gh-pages-branch.JPG)
+# User settings
+username: Lorem Ipsum
+user_description: Lorem Developer
+user_title: Lorem Ipsum
+email: lorem@ipsum.com
+twitter_username: loremipsum
+github_username:  loremipsum
+gplus_username:  loremipsum
+disqus_username: loremipsum
 
-Now, go to settings and check the **Github Pages** section. You should see a URL where the blog is hosted.
+```
 
-This process will host the theme as a **Project Page**. You can also download the files for local development. 
+## How to create a post ? 
 
-Default theme will look like this
+_posts create a file .md with structure:
 
-![webjeda gatok jekyll theme](/images/webjeda-gatok-jekyll-theme-screenshot-1.png)
+```md
+---
+layout: post
+title: "Lorem ipsum speak.."
+date: 2016-09-13 01:00:00
+image: '/assets/img/post-image.png'
+description: 'about tech'
+tags:
+- lorem
+- tech 
+categories:
+- Lorem ipsum
+twitter_text: 'How to speak with Lorem'
+---
+```
 
-Hover on the left side for a 3d sidebar!
+## License
+The MIT License (MIT)
 
-![webjeda gatok jekyll theme sidebar](/images/webjeda-gatok-jekyll-theme-screenshot.jpg)
+Copyright (c) 2016 Victor Igor
 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This theme is responsive.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-![webjeda gatok responsive jekyll theme](/images/webjeda-gatok-jekyll-theme-screenshot-2.png)
-
-
-
-# Development
-Make changes to the **master** branch and create a pull request. Do not use **gh-pages** branch as it is used to host the theme.
-
-
-# License
-Read LICENSE file
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
