@@ -1,10 +1,21 @@
 ---
 layout: page
 title: About
+permalink: /about/
 ---
+<div class="mt50"></div>
 
-Give people something to read and get to know you. Here's my attempt: this is [Mu-An](http://muan.co), a designer developer who lives in London at the moment.
+Webjeda Gatok is a Bootstrap based theme. Any Bootstrap element can be used in the theme.
 
-Tweet at [@muanchiou](http://twitter.com/muanchiou), read my code on [GitHub](http://github.com/muan), see my designs on [Dribbble](http://dribbble.com/muan), find my CV on [LinkedIn](http://uk.linkedin.com/in/muanchiou).
+The name Gatok is a short form of [Ghatotkacha](https://en.wikipedia.org/wiki/Ghatotkacha){: target="_blank"} who was a monster in the Hindu mythology Mahabharatha.
 
-This theme is made by me. You have a nice day. ♥
+![Gatok Jekyll Theme]({{site.baseurl}}/images/gatok.jpg)
+
+He is someone you shouldn't be messing with!
+![Gatok Jekyll Theme]({{site.baseurl}}/images/gatok-2.jpg)
+
+
+[**Watch his story**](https://www.youtube.com/watch?v=6gYv6S1dCqs){: target="_blank"}
+
+
+Read [Webjeda Blog](http://blog.webjeda.com){: target="_blank"} for jekyll tutorials. 

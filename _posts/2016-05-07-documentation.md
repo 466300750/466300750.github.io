@@ -1,6 +1,9 @@
-# Webjeda Gatok Theme
+---
+layout: post
+title: Documentation
+img: image-5.png
+---
 
-[**Demo**](http://webjeda.com/gatok)
 
 # Installation: 
 Fork the ``master`` branch and delete ``gh-pages`` branch in it. This is important because ``gh-pages`` branch is used here only to host the blog. You should be using the master branch as the source and create a fresh ``gh-pages`` branch.
@@ -26,17 +29,17 @@ This process will host the theme as a **Project Page**. You can also download th
 
 Default theme will look like this
 
-![webjeda gatok jekyll theme](/images/webjeda-gatok-jekyll-theme-screenshot-1.png)
+![webjeda gatok jekyll theme]({{site.baseurl}}/images/webjeda-gatok-jekyll-theme-screenshot-1.png)
 
 Hover on the left side for a 3d sidebar!
 
-![webjeda gatok jekyll theme sidebar](/images/webjeda-gatok-jekyll-theme-screenshot.jpg)
+![webjeda gatok jekyll theme sidebar]({{site.baseurl}}/images/webjeda-gatok-jekyll-theme-screenshot.jpg)
 
 
 This theme is responsive.
 
-![webjeda gatok responsive jekyll theme](/images/webjeda-gatok-jekyll-theme-screenshot-2.png)
-
+![webjeda gatok responsive jekyll theme]({{site.baseurl}}/images/webjeda-gatok-jekyll-theme-screenshot-2.png)
+{: .text-center}
 
 
 # Development
@@ -44,4 +47,14 @@ Make changes to the **master** branch and create a pull request. Do not use **gh
 
 
 # License
-Read LICENSE file
+MIT License
+
+# Change Log
+
+### Version 1.0
+* Fixed flashing menubar. 
+* SEO optimization. Disqus is installed by default. 
+* Compression is removed. Add ```layout: compress``` to the front matter of default layout to compress html.
+
+### Version 0.8
+* Initial release with 3D menu and minimal layout.
