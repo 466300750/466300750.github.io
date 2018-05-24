@@ -24,10 +24,25 @@
         {% include share.html %}
       {% endif %}
 
-      {% if page.disqus == 'y' %}
+      <!-- {% if page.disqus == 'y' %}
         {% include disqus.html %}
-      {% endif %}
+      {% endif %} -->
+      <div id="gitmentContainer"></div>
+      <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+      <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+      <script>
+      var gitment = new Gitment({
+          owner: '466300750',
+          repo: '466300750.github.io',
+          oauth: {
+              client_id: '3ae5115d9ccc977c2748',
+              client_secret: '2c929c1fc6652518f8dcd0c7412f565895187144',
+          },
+      });
+      gitment.render('gitmentContainer');
+      </script>
     </div>
+
     {% include footer.html %}
   </body>
 </html>
