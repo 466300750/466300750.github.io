@@ -21,3 +21,10 @@ redcarpet:
     - smart
 disqus: y
 share: y
+gitment:
+  enable: true
+  id: '<%= page.title %>' 
+  owner: '466300750'
+  repo: '466300750.github.io'
+  client_id: '3ae5115d9ccc977c2748'
+  client_secret: '2c929c1fc6652518f8dcd0c7412f565895187144'
