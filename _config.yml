@@ -1,14 +1,12 @@
-title:            Scribble
-description:      A jekyll theme. Because I scribble.
+title:            "Yue's Tech Blog"
+description:      "Collection of everythings I want to record down especially for tech"
 url:              # Site url, without a slash at the end.
 signoff:          # Your name.
-disqus_shortname: # disqus comment thread for post header options. ( leave blank if unwanted. )
+disqus_shortname: "yue"
 facebook_appid:   # appid for like button, remove from /_includes/share.html if unwanted.
 google_analytics: # set tracking, remove from /javascripts/basic.js if unwanted.
 
 links:
-  - name:         About
-    url:          /about
   - name:         Blog
     url:          http://466300750.github.io
     external:     true
@@ -21,3 +19,5 @@ markdown:         redcarpet
 redcarpet:
   extensions:
     - smart
+disqus: y
+share: y
