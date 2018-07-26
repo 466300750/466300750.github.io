@@ -1,6 +1,6 @@
 title:            "Yue's Tech Blog"
 description:      "Collection of everythings I want to record down especially for tech"
-url:              # Site url, without a slash at the end.
+url:              "/categories/index.html"
 signoff:          # Your name.
 disqus_shortname: "yue"
 facebook_appid:   # appid for like button, remove from /_includes/share.html if unwanted.
