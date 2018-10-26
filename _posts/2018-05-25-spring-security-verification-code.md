@@ -12,45 +12,80 @@ excerpt_separator: <!--more-->
 <!--more-->
 
 ### Spring Security的工作方式
-
-```
-OperationWebSecurityConfig extends WebSecurityConfigurerAdapter {
-@Override
-protected void configure(HttpSecurity http) throws Exception {
-    http.csrf()
-        .disable()
-        .antMatcher("/operation/**")
-        .authorizeRequests()
-        .antMatchers(GET, "/operation/soldtos").hasAuthority(CUSTOMER_MANAGEMENT.name())
-        .anyRequest()
-        .authenticated()
-        .and()
-        .addFilterBefore(new JwtUserPasswordLoginFilter("/operation/login", this.authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-        .addFilterBefore(new JwtAuthenticationFilter(this.authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-        .exceptionHandling()
-        .authenticationEntryPoint(authenticationEntryPoint)
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(STATELESS);
-```
-
-1. `JwtUserPasswordLoginFilter`  
-attemptAuthentication()   ——获取用户名和密码
-（直接进入）
-2. OperationLoginAuthenticationProvider
-Authenticate()  ——验证用户名、密码后生成token
-3. JwtUserPasswordLoginFilter
-sucessfulAuthentication() ——向response写入token
-
-
-1.  JwtAuthenticationFilter
-attemptAuthentication() ——获取token字符串
-2. OperationJwtAuthenticationProvider
-supports()后authenticate()  ——验证token并生成principle
-3. JwtAuthenticationFilter
-successfullAuthentication() ——把principle放入context
-
-Spring Security默认是提供一个formLogin的功能的，当没有认证（未登录）的用户访问受保护的资源的时候，会跳转到登录界面，该formLogin是通过UsernamePasswordAuthenticationFilter实现的。
-
 加入图片验证码
+
+由于生产环境有多态机器，为了保证服务器的完全无状态，选择服务器生成一个precode，并持久化。
+
+```
+@RestController
+public class OperationVerificationCodeController {
+    private DefaultKaptcha defaultKaptcha;
+    private OperationVerificationCodeService applicationService;
+
+    public OperationVerificationCodeController(DefaultKaptcha defaultKaptcha, OperationVerificationCodeService applicationService) {
+        this.defaultKaptcha = defaultKaptcha;
+        this.applicationService = applicationService;
+    }
+
+    @GetMapping("/verification/preCode")
+    public String preCode() {
+        return UUID.randomUUID().toString();
+    }
+
+    @GetMapping("/verification/code")
+    public void defaultKaptcha(@RequestParam("preCode") String preCode, HttpServletResponse response) throws IOException {
+        String text = defaultKaptcha.createText();
+        applicationService.save(OperationVerificationCode.of(preCode, text));
+        BufferedImage image = defaultKaptcha.createImage(text);
+        responseVerificationCodeImage(response, image);
+    }
+
+    private void responseVerificationCodeImage(HttpServletResponse response, BufferedImage image) throws IOException {
+        response.setHeader("Cache-Control", "no-store");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/jpeg");
+        ServletOutputStream outputStream = null;
+        try {
+            outputStream = response.getOutputStream();
+            ImageIO.write(image, "jpeg", outputStream);
+            outputStream.flush();
+        } finally {
+            IOUtils.closeQuietly(outputStream);
+        }
+    }
+}
+```
+
+```
+@Service
+public class OperationVerificationCodeService {
+
+    private static final int DURATION_MINUTES = 5;
+
+    private OperationVerificationCodeRepository operationVerificationCodeRepository;
+
+    public OperationVerificationCodeService(OperationVerificationCodeRepository operationVerificationCodeRepository) {
+        this.operationVerificationCodeRepository = operationVerificationCodeRepository;
+    }
+
+    public void save(OperationVerificationCode operationVerificationCode) {
+        operationVerificationCodeRepository.save(operationVerificationCode);
+    }
+
+    public void verify(String preCode, String verificationCode) {
+        OperationVerificationCode code = operationVerificationCodeRepository.by(preCode);
+        try {
+            if (Objects.isNull(code) || !code.getVerificationCode().equalsIgnoreCase(verificationCode)) {
+                throw new AccessDeniedException("验证码填写错误");
+            }
+            if (code.getCreatedAt().plus(DURATION_MINUTES, MINUTES).isBefore(Instant.now())) {
+                throw new AuthenticationServiceException("验证码过期");
+            }
+        } finally {
+            operationVerificationCodeRepository.delete(code.getId());
+        }
+    }
+}
+```
 

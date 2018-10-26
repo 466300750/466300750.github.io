@@ -14,7 +14,7 @@ excerpt_separator: <!--more-->
 ## 介绍
 动态代理是对于传入的方法调用进行包装，比如增加一些功能。动态代理允许一个类一个方法服务于任一类的多个方法调用。
 
-### 例子
+### JDK动态代理例子
 
 ```
 public class TimingDynamicInvocationHandler implements InvocationHandler {
@@ -64,6 +64,35 @@ CharSequence csProxyInstance = (CharSequence) Proxy.newProxyInstance(
  
 csProxyInstance.length()
 ```
+
+### CGLib 动态代理 
+```
+public class TimingMethodInterceptor implements MethodInterceptor {
+
+    public <T> T getProxy(Class<T> cls) {
+        T t = (T) Enhancer.create(cls, this);
+        return t;
+    }
+
+    @Override
+    public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+        long start = System.nanoTime();
+        Object rs = methodProxy.invokeSuper(o, args);
+        long elapsed = System.nanoTime() - start;
+
+        System.out.printf("Executing %s finished in %d ns", method.getName(), elapsed);
+        return rs;
+    }
+
+    public static void main(String[] args) {
+        TimingMethodInterceptor timingMethodInterceptor = new TimingMethodInterceptor();
+        HashMap hashMap = timingMethodInterceptor.getProxy(HashMap.class);
+        hashMap.put(0, 0);
+        hashMap.get(0);
+    }
+}
+```
+
 
 ## 动态代理使用场景
 

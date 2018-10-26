@@ -13,6 +13,28 @@ excerpt_separator: <!--more-->
 
 ## Haskell
 
+### ghci
+1. 为了简单和一致起见，在本书中我们会用字符串 ‘ghci>’ 来替代ghci的默认提示符。
+
+	你可以用ghci的 :set prompt 来进行修改。
+
+	```
+	Prelude> :set prompt "ghci>"
+		ghci>
+	```
+2. prelude模块中的类型，值和函数是默认直接可用的，在使用之前我们不需要额外的操作。然而如果需要其他模块中的一些定义，则需要使用ghci的:module方法预先加载。
+
+	`ghci> :module + Data.Ratio`
+
+	现在我们就可以使用Data.Ratio模块中的功能了。这个模块提供了一些操作有理数的功能。
+
+3. 将 add.hs 保存之后，就可以在 ghci 里通过 :load 命令（缩写为 :l ）载入它，接着就可以像使用其他函数一样，调用 add 函数了：
+
+	```
+	Prelude> :load WC.hs
+	*Main> add 1
+	```
+
 ### Haskell 的类型系统
 
 1. 强类型的
@@ -50,7 +72,7 @@ data BookInfo = Book Int String [String]
 
 在这个例子中， Int 表示一本书的 ID ，而 String 表示书名，而 [String] 则代表作者。
 
-BookInfo 类型包含的成分和一个 (Int, String, [String]) 类型的三元组一样，它们唯一不相同的是类型。[译注：这里指的是整个值的类型，不是成分的类型。]我们不能混用结构相同但类型不同的值。
+BookInfo 类型包含的成分和一个 (Int, String, [String]) 类型的三元组一样，它们唯一不相同的是类型。[译注：这里指的是整个值的类型，不是成分的类型。我们不能混用结构相同但类型不同的值。
 
 可以将值构造器看作是一个函数 —— 它创建并返回某个类型值。在这个书店的例子里，我们将 Int 、 String 和 [String] 三个类型的值应用到 Book ，从而创建一个 BookInfo 类型的值：
 
@@ -158,7 +180,30 @@ zip3 "foo" "bar" "quux" :: [(Char, Char, Char)]
 传入参数的数量，少于函数所能接受参数的数量，这种情况被称为函数的部分应用（partial application of the function）：函数正被它的其中几个参数所应用。
 
 
+## Monad
+Fundamentally, it's just a type m that has three particular functions defined on it. Note that m has to accept a type argument itself: you'd always use it as m Int, m String or m a. Then it just has to have some functions defined for it:
+
+```
+return :: a -> m a
+fmap :: (a -> b) -> m a -> m b
+join :: m (m a) -> m a
+```
+
+## Value-level programming
+
+Value-level programming paradigm (also known as von Neumann style) represents the program as a sequence of values transformed into each other. The program execution starts with input values, transforms and combines them to obtain other values, and continues doing this until the desired result values are obtained. New values are constructed from existing ones using a predefined set of value-to-value operations.
+
+This paradigm concentrates on the study of data types — values and elementary value-forming operations, their structure and properties. Usually value-forming operations form an algebra over the space of values.
+
+Value-level programming is the opposite of function-level programming.	
+
+
+
 ## Type-level programming
+
+**We don’t provide any ways to construct a void value, yet it still has kind *.**
+
+**In the same way that you can productively program at the value level with dynamic types, you can productively program at the type level with dynamic kinds. And * is basically that!**
 
 ```
 {-# LANGUAGE DataKinds #-}
