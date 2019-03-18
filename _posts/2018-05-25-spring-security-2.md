@@ -368,4 +368,4 @@ public class LoginApplicationService {
         return jwtTokenService.generateToken((UserPrincipal) authentication.getPrincipal());
     }
 }
-```
+```				

@@ -21,10 +21,10 @@ The theme is mobile optimized but I did not check browser compatibility. It look
 2. Clone the repository to your computer.<br /> `git clone https://github.com/username/scribble`
 3. `bundle install`
 4. **Using older versions of Jekyll**<br />
-  Build and run Jekyll using `jekyll --server --auto`.<br />
+  Build and run Jekyll using `bundle exec jekyll --server --auto`.<br />
   **Using [Jekyll 1.0](http://blog.parkermoore.de/2013/05/06/jekyll-1-dot-0-released/)**<br />
-  Build Jekyll using `jekyll build`.<br />
-  Then run Jekyll using `jekyll serve --watch`, go to http://localhost:4000 for your site.
+  Build Jekyll using `bundle exec jekyll build`.<br />
+  Then run Jekyll using `bundle exec jekyll serve --watch`, go to http://localhost:4000 for your site.
 
 ---
 
