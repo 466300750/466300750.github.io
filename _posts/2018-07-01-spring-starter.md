@@ -2,7 +2,7 @@
 layout: post
 title: Spring Boot Starter
 date: 2018-07-01 14:22:31
-categories: SpringBoot
+categories: Spring
 share: y
 excerpt_separator: <!--more-->
 ---

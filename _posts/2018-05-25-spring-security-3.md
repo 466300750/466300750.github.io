@@ -2,7 +2,7 @@
 layout: post
 title: spring security 3 -- Authentication Provider
 date: 2018-09-14 14:48:31
-categories: spring
+categories: Spring
 share: y
 excerpt_separator: <!--more-->
 ---

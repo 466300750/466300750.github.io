@@ -2,7 +2,7 @@
 layout: post
 title: spring transactional and lock
 date: 2018-06-05 11:48:31
-categories: spring
+categories: Spring
 share: y
 excerpt_separator: <!--more-->
 ---
@@ -90,3 +90,17 @@ mysql> SELECT * FROM t FOR UPDATE SKIP LOCKED;
 `with (UPDLOCK)`的用法：	`SELECT * FROM t WITH (UPDLOCK ) WHERE i = 2;`
 如果i上面没有索引那么会锁住整个page或者table，因此需要在i列上面创建索引，这样才会只锁住这行。
   
+### Transactional 自动保存到数据库
+> 问题1： 
+> 
+> labelTaskRepository.save(labelTask);   
+> labelTask.setLabelResultUri(labelTask.getLabelResultAddress());
+> labelTask.setLabelDatasetId("fake");
+> 如果在@Transactional里面，那么数据库里会save对labelTask 的修改吗？
+
+> 问题2： 
+> 如果在@Transactional里面，从数据库获取一个对象，然后修改对象属性，然后方法返回。并没有save该对象，数据库中对象的值会发生改变吗？
+
+答案是：
+是的。因为@Transactional会触发一个事务管理切面，它会把dirty的对象flush进数据库，并进行commit，而不需要显示地save回数据库。
+>When a method is transactional, then entities retrieved within this transaction are in managed state, which means that all changes made to them will be populated to the database automatically at the end of the transaction. Therefore either the save() call is redundant and the code should look like this:	

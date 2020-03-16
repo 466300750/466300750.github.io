@@ -2,7 +2,7 @@
 layout: post
 title: Rest Assured
 date: 2018-06-09 22:51:31
-categories: spring
+categories: Spring
 share: y
 excerpt_separator: <!--more-->
 ---

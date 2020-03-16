@@ -2,7 +2,7 @@
 layout: post
 title: sql server json
 date: 2018-07-16 10:42:31
-categories: sql
+categories: SQL
 share: y
 excerpt_separator: <!--more-->
 ---

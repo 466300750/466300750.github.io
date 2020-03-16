@@ -2,7 +2,7 @@
 layout: post
 title: Systemctl
 date: 2018-05-29 14:48:31
-categories: linux
+categories: Linux
 share: y
 excerpt_separator: <!--more-->
 ---

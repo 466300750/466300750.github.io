@@ -2,7 +2,7 @@
 layout: post
 title: spring security 添加验证码
 date: 2018-05-25 14:48:31
-categories: spring
+categories: Spring
 share: y
 excerpt_separator: <!--more-->
 ---

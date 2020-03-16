@@ -2,7 +2,7 @@
 layout: post
 title: run main class in command line
 date: 2018-06-08 11:36:31
-categories: java
+categories: Java
 share: y
 excerpt_separator: <!--more-->
 ---

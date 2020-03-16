@@ -10,6 +10,17 @@ excerpt_separator: <!--more-->
 
 <!--more-->
 
+## Elastic Stack
+
+- Core Services: Elasticsearch, Logstash, Kibana, Beats
+- X-Pack: Security, Alerting, Monitoring, Reporting, Graph, Machine Learning
+- Elastic Cloud
+- Elastic Cloud Enterprise(ECE)
+
+Web Access Log Example:
+
+![](../images/Elastic stack.png)
+
 ## Elasticsearch
 
 ### 查询命令
