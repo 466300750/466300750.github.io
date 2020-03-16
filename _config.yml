@@ -15,7 +15,7 @@ links:
     external:     true
 highlighter:      rouge
 permalink:        pretty
-markdown:         Kramdown
+markdown:         MaRuKu
 redcarpet:
   extensions:
     - smart
