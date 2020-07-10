@@ -2,7 +2,7 @@
 layout: post
 title: Programming Language
 date: 2020-02-17 15:58:31
-categories: Functional Programming
+categories: Functional-Programming
 share: y
 excerpt_separator: <!--more-->
 ---
