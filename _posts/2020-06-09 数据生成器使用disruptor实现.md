@@ -2,7 +2,7 @@
 layout: post
 title: 数据生成器使用disruptor
 date: 2020-06-09 19:42:31
-categories: 多线程
+categories: multi-thread
 share: y
 excerpt_separator: <!--more-->
 ---
