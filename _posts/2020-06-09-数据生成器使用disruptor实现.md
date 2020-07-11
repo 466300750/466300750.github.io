@@ -164,7 +164,7 @@ RingBuffer 通过检查所有事件处理器正在从 RingBuffe 中读取的当�
 ![](../images/disruptor-icon.png)
 
 所以这里的 执行任务 -> Disruptor中的Event；   
-数据生成执行线程 -> EventHandler；
+数据生成执行线程 -> EventHandler；  
 分发线程 -> EventProducer（Disruptor中并没有这个类，通过自行通过RingBuffer实现）
 
 可以看出，通过Disruptor框架，我们可以很容易的实现这个方案。
