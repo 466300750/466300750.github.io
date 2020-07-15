@@ -2,3 +2,6 @@ _site/
 .sass-cache
 .ruby-version
 vendor/**
+_post/2020-06-09-数据生成器使用disruptor实现.md
+_post/2020-06-09-数据生成器使用disruptor实现v2.md
+_post/2020-07-10-大数据组件测试平台总结.md
