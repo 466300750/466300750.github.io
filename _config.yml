@@ -13,7 +13,7 @@ links:
     url:          http://github.com/466300750
     external:     true
 highlighter:      rouge
-permalink:        pretty
+permalink:        /posts:year-:month-:day-:title.html
 markdown:         Kramdown
 redcarpet:
   extensions:

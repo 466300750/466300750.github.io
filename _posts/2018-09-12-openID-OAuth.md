@@ -11,6 +11,17 @@ excerpt_separator: <!--more-->
 
 <!--more-->
 
+Auth0使用的业界标准：
+
+现今网络上制订了几种不同的身份认证行业标准来规范网站应用实现用户认证及授权。这些标准是一套开放的规范和协议，告诉你如何设计一个认证和授权系统。 他们告诉你如何管理身份，安全地移动个人数据，并决定谁可以访问应用程序和数据。以下是Auth0可供选用的标准。
+
+1. OAuth 1
+2. OAuth 2
+3. Open ID Connect
+4. JSON Web Tokens
+5. SAML
+6. WS-Federation
+
 ## OAuth
 ### OAuth Roles
 OAuth defines four roles:
@@ -107,10 +118,8 @@ private static String COMPONENT_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cg
 ## OpenID vs OAuth
 
 - 目的不同
-
-	- OpenID is about sharing a single identity with different consumers.（OpenID用于不同消费者之间共享单一身份）
-	- OAuth is about sharing your data with different consumers without sharing your identity.
-
+	- OpenID 侧重验证.（OpenID用于不同消费者之间共享单一身份，比如淘宝也可用微博账号登录）
+	- OAuth 侧重授权.（比如我们登录淘宝用微博账号时，在微博授权界面，会问你是否共享xxx）
 - 不相互排斥
 - 共同点
 	- 开源——社区驱动
@@ -122,22 +131,20 @@ private static String COMPONENT_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cg
 
 ## OpenID vs SAML2
 
-OpenID and SAML2 are both based on the same concept of federated identity. Following are some of the difference between them..
+OpenID and SAML2 都是基于联合身份概念，一下是不同点：
 
-- SAML2 supports single sign-out - but OpenID does not
-- SAML2 service providers are coupled with the SAML2 Identity Providers, but OpenID relying parties are not coupled with OpenID Providers. OpenID has a discovery protocol which dynamically discovers the corresponding OpenID Provider, once an OpenID is given. SAML has a discovery protocol based on Identity Provider Discovery Service Protocol.
-- With SAML2, the user is coupled to the SAML2 IdP - your SAML2 identifier is only valid for the SAML2 IdP who issued it. But with OpenID, you own your identifier and you can map it to any OpenID Provider you wish.
-- SAML2 has different bindings while the only binding OpenID has is HTTP
-- SAML2 can be either Service Provider (SP) initiated or Identity Provider (IdP) initiated. But OpenID always SP initiated.
+- SAML2 支持单点登出，OpenID 不支持
+- SAML2 service providers 与 SAML2 Identity Providers 紧耦合, 但是 OpenID 依赖的机构不与 OpenID Providers紧耦合. OpenID 有一个发现协议可以动态发现相应的 corresponding OpenID Provider. SAML 的发现协议基于 Identity Provider Discovery Service Protocol.
+- With SAML2, 用于与 SAML2 IdP绑定 - 你的 SAML2 身份只对 SAML2 IdP 有效. 但是对于 OpenID, 你拥有你自己的身份而且你可以映射到任何你希望的 OpenID Provider.
+- SAML2 用多种绑定，但是 OpenID 只能绑定HTTP
+- SAML2 可以作为 Service Provider (SP) initiated 或者 Identity Provider (IdP) initiated. 但是 OpenID 只能是 SP initiated.
 - SAML 2 is based on XML while OpenID is not.
-- Most of the application developed in last 3 years were only supporting OpenID Connect.
-- 92% of the 8B+ authentication requests Microsoft Azure AD handed in May 2018 were from OpenID Connect enabled applications.
 
 ## HMAC Authentication (Hash-based Message Authentication Code)
 
-通过hash函数和双方共享的secret key一起计算一个message authentication code. 主要用于 verify the integrity, authenticity, and the identity of the message sender.
+通过hash函数和双方共享的secret key一起计算一个message authentication code. 主要用于完整性校验, 验证, 消息发送至身份识别.
 
-简言之，the server 提供给 client 一个public APP Id and shared secret key (API Key – shared only between server and client), 这个过程只发生在客户端第一次注册到服务器。
+简言之，服务器提供给客户端一个public APP Id and shared secret key (API Key – shared only between server and client), 这个过程只发生在客户端第一次注册到服务器。
 
 客户端和服务器对API Key达成一致后，客户端创建一个唯一的hash表示发送到server的请求来自于自己。通过组合 request data ，它通常包含 (Public APP Id, request URI, request content, HTTP method, time stamp, and nonce) 来生成一个唯一的 hash by using the API Key.然后客户端把hash和请求发送到服务器.
 
